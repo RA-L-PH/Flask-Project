@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Welcome to the Leave Management System</h1>
+<p>Please login or register to access the system.</p>
+<a href="{{ url_for('login') }}">Login</a> | <a href="{{ url_for('register') }}">Register</a>
+{% endblock %}
