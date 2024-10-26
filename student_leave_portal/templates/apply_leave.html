@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<a href="{{ url_for('view_leaves') }}">View Leave Requests</a>
+<h2>Apply for Leave</h2>
+<form method="POST" action="{{ url_for('apply_leave') }}">
+    <label for="reason">Reason for Leave:</label>
+    <textarea id="reason" name="reason" required></textarea>
+    
+    <label for="start_date">Start Date:</label>
+    <input type="date" id="start_date" name="start_date" required>
+    
+    <label for="end_date">End Date:</label>
+    <input type="date" id="end_date" name="end_date" required>
+    
+    <label for="staff_id">Select Staff Member:</label>
+    <select id="staff_id" name="staff_id" required>
+        <option value="">--Select Staff--</option>
+        {% for staff in staff_members %}
+        <option value="{{ staff.id }}">{{ staff.name }}</option>
+        {% endfor %}
+    </select>
+    
+    <button type="submit">Apply for Leave</button>
+</form>
+{% endblock %}

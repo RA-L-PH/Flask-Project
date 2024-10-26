@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Leave Portal</title>
+</head>
+<body>
+    <h1>Student Leave Application Portal</h1>
+    
+    <div>
+        <a href="{{ url_for('logout') }}">Logout</a>  <!-- Logout Button -->
+    </div>
+    
+    {% block content %}{% endblock %}
+</body>
+</html>

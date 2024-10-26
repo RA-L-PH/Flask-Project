@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Manage Leave Applications</h1>
+
+    {% if leave_applications %}
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Reason</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>  <!-- New column for Actions -->
+                </tr>
+            </thead>
+            <tbody>
+                {% for leave in leave_applications %}
+                <tr>
+                    <td>{{ leave.reason }}</td>
+                    <td>{{ leave.start_date }}</td>
+                    <td>{{ leave.end_date }}</td>
+                    <td>{{ leave.status }}</td>
+                    <td>
+                        {% if leave.status == 'Pending' %}
+                        <form method="POST" action="{{ url_for('manage_leaves') }}">
+                            <input type="hidden" name="leave_id" value="{{ leave.id }}">
+                            <button type="submit" name="action" value="approve">Approve</button>
+                            <button type="submit" name="action" value="deny">Deny</button>
+                        </form>
+                        {% else %}
+                        <span>N/A</span>  <!-- No actions for already processed applications -->
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No leave applications found.</p>
+    {% endif %}
+{% endblock %}

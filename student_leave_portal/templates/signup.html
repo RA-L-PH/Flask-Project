@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="" method="post">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="role">Role:</label>
+    <select id="role" name="role" required>
+        <option value="Student">Student</option>
+        <option value="Staff">Staff</option>
+    </select><br><br>
+
+    <!-- Additional fields based on role -->
+    <div id="student-fields" style="display: none;">
+        <label for="student_id">Student ID:</label>
+        <input type="text" id="student_id" name="student_id"><br><br>
+        <label for="course">Course:</label>
+        <input type="text" id="course" name="course"><br><br>
+    </div>
+
+    <div id="staff-fields" style="display: none;">
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department"><br><br>
+        <label for="position">Position:</label>
+        <input type="text" id="position" name="position"><br><br>
+    </div>
+
+    <script>
+        // Toggle additional fields based on role selection
+        document.getElementById('role').addEventListener('change', function() {
+            var role = this.value;
+            var studentFields = document.getElementById('student-fields');
+            var staffFields = document.getElementById('staff-fields');
+
+            if (role === 'Student') {
+                studentFields.style.display = 'block';
+                staffFields.style.display = 'none';
+            } else if (role === 'Staff') {
+                studentFields.style.display = 'none';
+                staffFields.style.display = 'block';
+            }
+        });
+    </script>
+
+    <input type="submit" value="Sign up">
+</form>
+
+{% endblock %}
